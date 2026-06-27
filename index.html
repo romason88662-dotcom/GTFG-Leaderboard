@@ -80,7 +80,7 @@ body{
 .rank-col{ width:80px; }
 .player-col{ flex:1; }
 .points-col{
-    width:80px;
+    width:180px;
     text-align:right;
 }
 
@@ -110,89 +110,60 @@ body{
     margin:8px 0;
     border-radius:8px;
 }
+
+.game-note{
+    color:#8dff9c;
+    margin-bottom:10px;
+    font-size:14px;
+}
 </style>
 </head>
 <body>
 
 <div class="menu">
     <div class="left">
-        <div class="title">Noel Runners Leaderboard</div>
+        <div class="title">Leaderboard</div>
 
         <div class="tabs">
-            <div class="tab active" onclick="showTab(0)">Main List</div>
-            <div class="tab" onclick="showTab(1)">Legacy List</div>
+            <div class="tab active" onclick="showTab(0)">Main Ranks</div>
+            <div class="tab" onclick="showTab(1)">Legacy Ranks</div>
+            <div class="tab" onclick="showTab(2)">Game Rankings</div>
         </div>
 
         <div class="request-btn" onclick="requestRank()">Request Rank</div>
 
-        <div class="header-row">
+        <div class="header-row" id="headerRow">
             <div class="rank-col">Rank</div>
             <div class="player-col">Player</div>
             <div class="points-col">Points</div>
         </div>
 
         <div class="list active">
-            <div class="entry">
-                <div class="rank-col">Top 1</div>
-                <div class="player-col">Plex</div>
-                <div class="points-col">4.6</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 2</div>
-                <div class="player-col">TopmanVr</div>
-                <div class="points-col">4.5</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 3</div>
-                <div class="player-col">Ian</div>
-                <div class="points-col">4.4</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 4</div>
-                <div class="player-col">Not Taken</div>
-                <div class="points-col">---</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 5</div>
-                <div class="player-col">Not Taken</div>
-                <div class="points-col">---</div>
-            </div>
+            <div class="entry"><div class="rank-col">Top 1</div><div class="player-col">Plex</div><div class="points-col">4.6</div></div>
+            <div class="entry"><div class="rank-col">Top 2</div><div class="player-col">TopmanVr</div><div class="points-col">4.5</div></div>
+            <div class="entry"><div class="rank-col">Top 3</div><div class="player-col">Ian</div><div class="points-col">4.4</div></div>
+            <div class="entry"><div class="rank-col">Top 4</div><div class="player-col">Not Taken</div><div class="points-col">---</div></div>
+            <div class="entry"><div class="rank-col">Top 5</div><div class="player-col">Not Taken</div><div class="points-col">---</div></div>
         </div>
 
         <div class="list">
-            <div class="entry">
-                <div class="rank-col">Top 1</div>
-                <div class="player-col">Plex</div>
-                <div class="points-col">Unknown</div>
+            <div class="entry"><div class="rank-col">Top 1</div><div class="player-col">Plex</div><div class="points-col">Unknown</div></div>
+            <div class="entry"><div class="rank-col">Top 2</div><div class="player-col">Extraordinary</div><div class="points-col">Unknown</div></div>
+            <div class="entry"><div class="rank-col">Top 3</div><div class="player-col">Spark</div><div class="points-col">Unknown</div></div>
+            <div class="entry"><div class="rank-col">Top 4</div><div class="player-col">TopmanVr</div><div class="points-col">Unknown</div></div>
+            <div class="entry"><div class="rank-col">Top 5</div><div class="player-col">Ttyt</div><div class="points-col">Unknown</div></div>
+        </div>
+
+        <div class="list">
+            <div class="game-note">
+                Additional Points = bonus points for moving up in player rankings
             </div>
 
-            <div class="entry">
-                <div class="rank-col">Top 2</div>
-                <div class="player-col">Extraordinary</div>
-                <div class="points-col">Unknown</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 3</div>
-                <div class="player-col">Spark</div>
-                <div class="points-col">Unknown</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 4</div>
-                <div class="player-col">TopmanVr</div>
-                <div class="points-col">Unknown</div>
-            </div>
-
-            <div class="entry">
-                <div class="rank-col">Top 5</div>
-                <div class="player-col">Ttyt</div>
-                <div class="points-col">Unknown</div>
-            </div>
+            <div class="entry"><div class="rank-col">Top 1</div><div class="player-col">Gorilla Tag</div><div class="points-col">5.0</div></div>
+            <div class="entry"><div class="rank-col">Top 2</div><div class="player-col">Noel Runners</div><div class="points-col">4.5</div></div>
+            <div class="entry"><div class="rank-col">Top 3</div><div class="player-col">Not Taken</div><div class="points-col">3.5</div></div>
+            <div class="entry"><div class="rank-col">Top 4</div><div class="player-col">Not Taken</div><div class="points-col">2.5</div></div>
+            <div class="entry"><div class="rank-col">Top 5</div><div class="player-col">Not Taken</div><div class="points-col">1.6</div></div>
         </div>
     </div>
 
@@ -212,6 +183,14 @@ function showTab(index){
 
     document.querySelectorAll(".list")[index].classList.add("active");
     document.querySelectorAll(".tab")[index].classList.add("active");
+
+    const pointsHeader = document.querySelector("#headerRow .points-col");
+
+    if(index === 2){
+        pointsHeader.textContent = "Additional Points";
+    } else {
+        pointsHeader.textContent = "Points";
+    }
 }
 
 function requestRank(){
