@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    color:white;
+    background:#1b1b1b;
+}
+
+.menu{
+    width:100vw;
+    height:100vh;
+    background:rgba(20,30,25,0.96);
+    padding:20px;
+    box-sizing:border-box;
+    display:flex;
+    gap:20px;
+}
+
+.left{
+    flex:2;
+}
+
+.right{
+    flex:1;
+    background:#111;
+    border-radius:16px;
+    padding:15px;
+    border:1px solid rgba(0,255,100,0.15);
+}
+
+.title{
+    color:#8dff9c;
+    margin-bottom:12px;
+    font-size:28px;
+}
+
+.tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.tab{
+    background:#21372a;
+    color:#8dff9c;
+    padding:10px 18px;
+    border-radius:999px;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:#2f5b3d;
+}
+
+.request-btn{
+    background:#21372a;
+    color:#8dff9c;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+    margin-bottom:16px;
+    width:200px;
+}
+
+.list{
+    display:none;
+}
+
+.list.active{
+    display:block;
+}
+
+.entry{
+    background:#111;
+    margin:8px 0;
+    padding:16px;
+    border-radius:8px;
+    border-left:4px solid #4dff88;
+    font-size:20px;
+}
+
+.placement{
+    background:#1a1a1a;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<div class="menu">
+    <div class="left">
+        <div class="title">Noel Runners Leaderboard</div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab(0)">Main List</div>
+            <div class="tab" onclick="showTab(1)">Legacy List</div>
+        </div>
+
+        <div class="request-btn" onclick="requestRank()">Request Rank</div>
+
+        <div class="list active">
+            <div class="entry">Top 1: Plex</div>
+            <div class="entry">Top 2: TopmanVr</div>
+            <div class="entry">Top 3: Ian</div>
+            <div class="entry">Top 4: Not Taken</div>
+            <div class="entry">Top 5: Not Taken</div>
+        </div>
+
+        <div class="list">
+            <div class="entry">Top 1: Plex</div>
+            <div class="entry">Top 2: Extraordinary</div>
+            <div class="entry">Top 3: Spark</div>
+            <div class="entry">Top 4: TopmanVr</div>
+            <div class="entry">Top 5: Ttyt</div>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="title" style="font-size:22px;">Recent Placements</div>
+		
+        <div class="placement">Ian Ranked Top 3</div>
+        <div class="placement">TopmanVr Ranked Top 2</div>
+		<div class="placement">Plex Ranked Top 1</div>
+    </div>
+</div>
+
+<script>
+function showTab(index){
+    document.querySelectorAll(".list").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+
+    document.querySelectorAll(".list")[index].classList.add("active");
+    document.querySelectorAll(".tab")[index].classList.add("active");
+}
+
+function requestRank(){
+    window.open("https://forms.gle/rnZC68iEo1QrdDvX6", "_blank");
+}
+</script>
+
+</body>
+</html>
